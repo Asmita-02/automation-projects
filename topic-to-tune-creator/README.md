@@ -2,9 +2,10 @@
 
 Turn any topic into a short, listenable podcast episode. Type a topic into the web app, and an automated n8n workflow writes a script with Google Gemini, converts it to speech with Murf AI, and sends the audio back for playback in the browser.
 
-> **Status:** Portfolio / student project. Items marked `[PLACEHOLDER]` must be filled in with your own details. Nothing in this README contains real credentials or private URLs.
+> **Status:** Portfolio / student project. Setup instructions contain example placeholder that must be replaced with your own configuration. The shared workflow JSON does not contain real API credentials or private webhook URLs.
 
 ---
+**Live Demo:** [Topic To Tune Creator](https://topic-to-tune-creator.lovable.app)
 
 ## Table of Contents
 
@@ -88,8 +89,6 @@ flowchart TD
 | **Murf AI API** | Text-to-speech service that converts the script into spoken audio. |
 | **HTTP requests / n8n webhook** | Integration layer between the frontend, n8n, and Murf. |
 
-> Frontend framework details depend on what Lovable generated for your project. `[PLACEHOLDER: confirm framework and build tooling from your Lovable project's source code]`
-
 ---
 
 ## Project Architecture
@@ -124,19 +123,14 @@ n8n processes the request through the workflow and returns the generated audio i
 
 ## Repository Structure
 
-This is a **suggested** layout. These paths do not exist until you create them.
+This is a **suggested** layout.
 
 ```text
-topic-to-tune-creator/                  # suggested root folder
-├── README.md                           # this file
-├── frontend/                           # suggested: Lovable source code exported/synced from GitHub
-│   └── ...                             # [PLACEHOLDER: contents depend on your Lovable project]
-├── n8n/                                # suggested: workflow export
-│   └── AI_Podcast_workflow_SAFE.json   # sanitized workflow (placeholder API key, no credentials)
-├── docs/                               # suggested: optional documentation
-│   └── screenshots/                    # suggested: add your own screenshots here
-├── .gitignore                          # suggested: ignore .env files and local secrets
-└── LICENSE                             # suggested: add your chosen license
+topic-to-tune-creator/
+├── AI_Podcast_workflow_SAFE.json
+├── README.md
+├── n8n-workflow.png
+└── podlet_preview.png
 ```
 
 ---
@@ -156,15 +150,20 @@ topic-to-tune-creator/                  # suggested root folder
 
 ### 1. Get the frontend source code from Lovable
 
-1. Open your project in Lovable: `[PLACEHOLDER: your Lovable project URL]`
+1. Open your project in Lovable: `https://lovable.dev/projects/5acff977-9656-4f76-9e85-8d5dec46b78d`
 2. Connect the project to GitHub using Lovable's GitHub integration, which syncs the project code to a repository you own.
 3. Clone that repository, or copy its contents into the `frontend/` folder of this repository.
-4. Install and run the frontend following the instructions that apply to the generated project. `[PLACEHOLDER: confirm install and run commands from the generated project's package files]`
+4. Install and run the frontend following the instructions that apply to the generated project.
+
+```bash
+bun install
+bun run dev
+```
 
 ### 2. Import the n8n workflow
 
 1. In n8n, create a new workflow, open the **⋯** menu, and choose **Import from File**.
-2. Select `n8n/AI_Podcast_workflow_SAFE.json`.
+2. Select `topic-to-tune-creator/AI_Podcast_workflow_SAFE.json`.
 3. The imported workflow contains six nodes: **Webhook**, **Podcast Script Generator**, **Google Gemini Chat Model**, **Murf API**, **The Podcast Downloader**, and **Respond to Webhook**.
 
 > **Important:** the shared JSON is sanitized. Credentials and the Murf API key are **not** included, so they must be reconfigured after import. The workflow will not run until you do.
@@ -196,7 +195,7 @@ Also confirm the `voiceId` (`Natalie`) and `locale` (`en-US`) values against Mur
 2. Copy the webhook URL. n8n shows two variants:
    - **Test URL:** used while the workflow is open in the editor and listening for a test event.
    - **Production URL:** used when the workflow is **active**.
-3. Set the webhook URL in your frontend configuration. `[PLACEHOLDER: the file or setting in your Lovable project where the webhook URL is configured]`
+3. Configure the frontend with your production n8n webhook URL locally. Do not commit private webhook URLs to GitHub.
 4. Make sure the frontend sends `POST` requests with `Content-Type: application/json` and a body of `{ "text": "<topic>" }`.
 
 ---
@@ -212,13 +211,7 @@ The workflow itself does not read environment variables. Credentials live in n8n
 | n8n webhook URL | Frontend configuration | `https://<YOUR_N8N_HOST>/webhook/<YOUR_WEBHOOK_PATH>` |
 | n8n test webhook URL | Frontend configuration, for testing only | `https://<YOUR_N8N_HOST>/webhook-test/<YOUR_WEBHOOK_PATH>` |
 
-If your frontend reads the webhook URL from an environment variable, use a local, git-ignored file. The variable name is defined by your project:
-
-```bash
-# .env  (do NOT commit this file)
-# [PLACEHOLDER: replace VARIABLE_NAME with the name your frontend actually uses]
-VARIABLE_NAME=https://<YOUR_N8N_HOST>/webhook/<YOUR_WEBHOOK_PATH>
-```
+The frontend uses the production n8n webhook URL configured in the project. Keep private webhook URLs out of this repository. The sanitized workflow does not include API credentials.
 
 Never commit real API keys, tokens, passwords, personal identifiers, or private webhook URLs.
 
@@ -272,7 +265,7 @@ Content-Type: application/json
 { "text": "The science behind rainbows" }
 ```
 
-`[PLACEHOLDER: add your own screenshots to docs/screenshots/ and link them here]`
+![Podlet app preview](podlet_preview.png)
 
 ---
 
@@ -316,6 +309,5 @@ Content-Type: application/json
 
 **Author:** `Asmita`
 **GitHub:** `Asmita-02`
-**Contact:** `asmitamisal2@gmail.com`
 
-**License:** `Feel free to use and modify this workflow for your own projects.`
+**License:** `No license specified`.
