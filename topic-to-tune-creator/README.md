@@ -314,8 +314,8 @@ Content-Type: application/json
 
 ## Author and License
 
-**Author:** `[PLACEHOLDER: your name]`
-**GitHub:** `[PLACEHOLDER: https://github.com/your-username]`
-**Contact:** `[PLACEHOLDER: optional contact or portfolio link]`
+**Author:** `Asmita`
+**GitHub:** `asmiita2`
+**Contact:** `asmitamisal2@gmail.com`
 
-**License:** `[PLACEHOLDER: choose a license, e.g. MIT, and add a LICENSE file]`
+**License:** `Feel free to use and modify this workflow for your own projects.`
