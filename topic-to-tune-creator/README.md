@@ -315,7 +315,7 @@ Content-Type: application/json
 ## Author and License
 
 **Author:** `Asmita`
-**GitHub:** `asmiita2`
+**GitHub:** `Asmita-02`
 **Contact:** `asmitamisal2@gmail.com`
 
 **License:** `Feel free to use and modify this workflow for your own projects.`
